@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:MyFinances.Models.Converters"
+             x:Class="MyFinances.Views.SettingsPage"
+             Title="Ustawienia">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:EqualsConverter x:Key="EqualsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+        <StackLayout>
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Nagłówek -->
+                <Label Grid.Row="0" 
+                       Text="Ustawienia aplikacji" 
+                       FontSize="24" 
+                       FontAttributes="Bold" 
+                       Margin="0,0,0,20"/>
+
+                <!-- Ilość operacji na stronę -->
+                <Grid Grid.Row="1" Margin="0,0,0,15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" 
+                           Text="Ilość operacji na stronę:" 
+                           VerticalOptions="Center" 
+                           Margin="0,0,15,0"/>
+
+                    <Entry Grid.Column="1" 
+                           WidthRequest="100" 
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center"
+                           Text="{Binding OperationsPerPageText}"
+                           Keyboard="Numeric"/>
+                </Grid>
+
+                <!-- Użycie paginacji -->
+                <Grid Grid.Row="2" Margin="0,0,0,15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Label Text="Czy używać paginacji?" 
+                           VerticalOptions="Center" 
+                           Margin="0,0,15,0"/>
+
+                    <CheckBox Grid.Column="1"
+                              IsChecked="{Binding UsePagination}"/>
+                </Grid>
+
+                <!-- Typ bazy danych -->
+                <Grid Grid.Row="3" Margin="0,0,0,15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" 
+                           Text="Typ bazy danych:" 
+                           VerticalOptions="Center" 
+                           Margin="0,0,15,0"/>
+
+                    <StackLayout Grid.Column="1" Orientation="Horizontal">
+                        <RadioButton x:Name="WebApiRadioButton"
+                             Content="WebAPI"
+                             GroupName="DbGroup"
+                             IsChecked="{Binding DataBaseType, Converter={StaticResource EqualsConverter}, ConverterParameter='SQL Server'}"/>
+
+                        <RadioButton x:Name="SQLiteRadioButton"
+                             Content="SQLite"
+                             GroupName="DbGroup"
+                             IsChecked="{Binding DataBaseType, Converter={StaticResource EqualsConverter}, ConverterParameter='SQLite'}"/>
+                    </StackLayout>
+                </Grid>
+
+                <!-- Adres WebAPI -->
+                <Grid Grid.Row="4" Margin="0,0,0,15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" 
+                           Text="Adres WebAPI:" 
+                           VerticalOptions="Center" 
+                           Margin="0,0,15,0"/>
+
+                    <Entry Grid.Column="1" 
+                           VerticalOptions="Center"
+                           Text="{Binding ApiAddress}"/>
+                </Grid>
+
+                <!-- Przyciski -->
+                <StackLayout Grid.Row="5" 
+                            Orientation="Horizontal" 
+                            HorizontalOptions="End" 
+                            Margin="0,20,0,0">
+
+                    <Button x:Name="SaveButton" 
+                            Text="Zapisz" 
+                            WidthRequest="80" 
+                            HeightRequest="40" 
+                            Margin="0,0,10,0"
+                            Command="{Binding SaveSettingsCommand}"/>
+
+                    <Button x:Name="CancelButton" 
+                            Text="Anuluj" 
+                            WidthRequest="80" 
+                            HeightRequest="40"
+                            Command="{Binding CancelSettingsCommand}"/>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

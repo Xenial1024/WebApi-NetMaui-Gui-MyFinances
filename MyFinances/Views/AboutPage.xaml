@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyFinances.Views.AboutPage"
+             xmlns:vm="clr-namespace:MyFinances.ViewModels"
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:AboutViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#96d1ff</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <Image Source="myfinances_logo.png" HeightRequest="80" HorizontalOptions="Center" />
+
+            <Label Text="MyFinances" 
+                   FontSize="24" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" />
+
+            <Label Text="Wersja: 1.0.0" 
+                   FontSize="14" 
+                   TextColor="#999" 
+                   HorizontalOptions="Center" />
+
+            <BoxView HeightRequest="1" Color="LightGray" />
+
+            <Label FontSize="16"
+                TextColor="#fff">
+                Aplikacja do zarządzania wydatkami.
+            </Label>
+
+            <Label Text="Autor: Marek" FontSize="14" TextColor="Gray" />
+
+            <Label Text="Kontakt: kontakt@example.com" 
+                   FontSize="14" 
+                   TextColor="#00f">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                          Command="{Binding OpenEmailCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
