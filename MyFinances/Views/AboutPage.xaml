@@ -34,7 +34,7 @@
 
             <Label FontSize="16"
                 TextColor="#fff">
-                Aplikacja do zarządzania wydatkami.
+                Jednoinstancyjna plikacja do zarządzania wydatkami.
             </Label>
 
             <Label Text="Autor: Marek" FontSize="14" TextColor="Gray" />
